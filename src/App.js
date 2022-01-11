@@ -1,14 +1,21 @@
+import { Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Loader from './pages/Loader';
+
 function App() {
   return (
-    <>
-      <button class="btn btn-primary">DaisyUI Button</button>
-      <ul class="steps steps-horizontal">
-        <li class="step step-primary">Register</li>
-        <li class="step step-primary">Choose plan</li>
-        <li class="step">Purchase</li>
-        <li class="step">Receive Product</li>
-      </ul>
-    </>
+    <BrowserRouter>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route index element={<div>home bro</div>} />
+
+          <Route path="login" element={<div>LOGIN</div>} />
+
+          <Route path="*" element={<div>HOME</div>} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   );
 }
 
