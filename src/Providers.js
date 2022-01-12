@@ -1,8 +1,13 @@
-import { store } from './state';
 import { Provider } from 'react-redux';
+import { store } from './state';
+import { ThemeProvider } from './contexts/theme';
 
 const Providers = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <ThemeProvider>
+      <Provider store={store}>{children}</Provider>
+    </ThemeProvider>
+  );
 };
 
 export default Providers;
