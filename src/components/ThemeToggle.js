@@ -8,7 +8,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="btn btn-square btn-outline border-gray-500 dark:border-gray-600"
+      className="btn btn-square btn-outline border-gray-500 dark:border-gray-700"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} className="text-xl text-white" />
