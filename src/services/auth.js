@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../config';
 
-const API_URL = config.api_url + 'auth/';
+const API_URL = config.apiUrl + 'auth/';
 
 const register = (name, email, password, tz) => {
   return axios.post(API_URL + 'register', {
