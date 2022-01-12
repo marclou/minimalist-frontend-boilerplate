@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import { Layout } from './components';
 import Loader from './pages/Loader';
 import Home from './pages/Home';
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -11,17 +12,19 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
 
-          <Route path="login" element={<div>LOGIN</div>} />
+            <Route path="login" element={<div>LOGIN</div>} />
 
-          <Route path="signup" element={<div>REGISTER</div>} />
+            <Route path="signup" element={<div>REGISTER</div>} />
 
-          <Route path="dashboard" element={<PrivateRoute />}>
-            <Route element={<h1>yo</h1>} />
+            <Route path="dashboard" element={<PrivateRoute />}>
+              <Route element={<h1>yo</h1>} />
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
           </Route>
-
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

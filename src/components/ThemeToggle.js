@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from '../contexts/theme';
 
 const ThemeToggle = () => {
@@ -6,10 +8,10 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="btn btn-square btn-outline border-gray-200 dark:border-gray-600"
+      className="btn btn-square btn-outline border-gray-500 dark:border-gray-600"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
-      <span className="text-2xl">{theme === 'dark' ? '🌞' : '🌝'}</span>
+      <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} className="text-xl text-white" />
     </button>
   );
 };

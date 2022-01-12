@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import ThemeToggle from '../components/ThemeToggle';
 
 const Home = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero pt-16">
       <div className="text-center hero-content">
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Welcome</h1>
@@ -19,7 +18,6 @@ const Home = () => {
               <button className="btn btn-primary">Sign up</button>
             </Link>
           </div>
-          <ThemeToggle />
         </div>
       </div>
     </div>
