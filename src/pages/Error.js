@@ -23,7 +23,7 @@ class Error extends React.Component {
               <h6 className="mb-2 text-2xl font-bold text-center md:text-3xl">Oops! Something went wrong...</h6>
               <p className="text-center text-gray-200 md:text-lg">{this.state.error.message}</p>
               <div className="justify-center card-actions">
-                <a href={`mailto:${config.emailSupport}`} target="_blank" className="btn">
+                <a href={`mailto:${config.emailSupport}`} target="_blank" className="btn" rel="noreferrer">
                   Get help
                 </a>
               </div>
