@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Outlet, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const PrivateRoute = () => {
-  const authToken = localStorage.getItem('tokens');
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!authToken) {
-      toast.error('You need to Log In first');
+    if (!isLoggedIn) {
+      toast.error('You need to log in first');
     }
   }, []);
 
-  return authToken ? <Outlet /> : <Navigate to="/login" />;
+  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
 export default PrivateRoute;
