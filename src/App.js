@@ -5,7 +5,8 @@ import { Layout } from './components';
 import Home from './pages/Home';
 
 const NotFound = lazy(() => import('./pages/NotFound'));
-const Register = lazy(() => import('./pages/Register'));
+const Signup = lazy(() => import('./pages/Signup'));
+const Login = lazy(() => import('./pages/Login'));
 const PrivateRoute = lazy(() => import('./components/PrivateRoute'));
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
 
-          <Route path="login" element={<div>LOGIN</div>} />
+          <Route path="signup" element={<Signup />} />
 
-          <Route path="signup" element={<Register />} />
+          <Route path="login" element={<Login />} />
 
           <Route path="dashboard" element={<PrivateRoute />}>
             <Route element={<h1>yo</h1>} />

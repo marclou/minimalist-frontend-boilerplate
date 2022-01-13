@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 
 import { register } from '../state/auth';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
 
-const Register = () => {
+const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -38,7 +37,7 @@ const Register = () => {
       .required('This field is required!'),
   });
 
-  const handleRegister = (formValue) => {
+  const handleSignup = (formValue) => {
     const { name, email, password } = formValue;
 
     setIsLoading(true);
@@ -56,7 +55,7 @@ const Register = () => {
 
   return (
     <div className="card shadow-lg bg-base-100 max-w-2xl mx-auto">
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleRegister}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSignup}>
         {({ errors, touched, isSubmitting }) => (
           <Form>
             <div className="card-body">
@@ -122,7 +121,7 @@ const Register = () => {
                 <div className="text-center mt-4">
                   Already have an account?{' '}
                   <Link to="/login" className="link link-primary">
-                    Login
+                    Log in
                   </Link>
                 </div>
               </div>
@@ -134,4 +133,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;
