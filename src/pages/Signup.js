@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { register } from '../state/auth';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
@@ -116,7 +118,7 @@ const Signup = () => {
 
               <div className="form-group py-4">
                 <button type="submit" className={`btn btn-primary btn-block ${isLoading && 'loading'}`}>
-                  Sign Up →
+                  Sign Up <FontAwesomeIcon icon={faArrowRight} className="ml-2 text-md" />
                 </button>
                 <div className="text-center mt-4">
                   Already have an account?{' '}

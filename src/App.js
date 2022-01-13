@@ -20,8 +20,8 @@ function App() {
 
           <Route path="login" element={<Login />} />
 
-          <Route path="dashboard" element={<PrivateRoute />}>
-            <Route element={<h1>yo</h1>} />
+          <Route element={<PrivateRoute />}>
+            <Route path="dashboard" element={<h1>yo</h1>} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
