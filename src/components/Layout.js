@@ -12,7 +12,7 @@ import Loader from '../pages/Loader';
 const Layout = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="min-h-screen w-screen p-2">
+    <div className="min-h-screen w-screen p-2 lg:p-6">
       <ToastContainer theme={theme} />
       <Header />
       <ErrorBoundary>

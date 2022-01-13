@@ -11,6 +11,7 @@ const initialState = user && tokens ? { isLoggedIn: true, user, tokens } : { isL
 export const register = createAsyncThunk('auth/register', async ({ name, email, password, tz }, thunkAPI) => {
   try {
     const response = await authService.register(name, email, password, tz);
+    toast(`Your account was created, ${name} 🎉\n\nLogin to get started!`);
     return response.data;
   } catch (error) {
     const message =

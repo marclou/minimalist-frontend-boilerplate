@@ -20,6 +20,9 @@ code {
 .Toastify__toast {
   border-radius: 16px !important;
 }
+.Toastify__toast-body {
+  white-space: pre-line;
+}
 :root {
   --toastify-color-dark: hsl(var(--b3)) !important;
   --toastify-color-progress-light: linear-gradient(to right, hsl(var(--p)), hsl(var(--s)), hsl(var(--a))) !important;
@@ -27,4 +30,15 @@ code {
   --toastify-color-progress-success: hsl(var(--su)) !important;
   --toastify-color-progress-warning: hsl(var(--wa)) !important;
   --toastify-color-progress-error: hsl(var(--er)) !important;
+  background-color: hsl(var(--b2)) !important;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 20px;
+  z-index: 5;
+  cursor: pointer;
 }
