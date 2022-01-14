@@ -14,6 +14,10 @@ class Error extends React.Component {
     });
   }
 
+  handleRefresh() {
+    window.location.reload(false);
+  }
+
   render() {
     if (this.state.errorInfo) {
       return (
@@ -23,7 +27,15 @@ class Error extends React.Component {
               <h6 className="mb-2 text-2xl font-bold text-center md:text-3xl">Oops! Something went wrong...</h6>
               <p className="text-center text-gray-200 md:text-lg">{this.state.error.message}</p>
               <div className="justify-center card-actions">
-                <a href={`mailto:${config.emailSupport}`} target="_blank" className="btn btn-primary" rel="noreferrer">
+                <button className="btn btn-primary" onClick={this.handleRefresh}>
+                  Refresh
+                </button>
+                <a
+                  href={`mailto:${config.emailSupport}`}
+                  target="_blank"
+                  className="btn btn-primary btn-ghost"
+                  rel="noreferrer"
+                >
                   Get help
                 </a>
               </div>

@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
-import { store } from './state';
-import { ThemeProvider } from './contexts/theme';
+import { store } from '../state';
+import { ThemeProvider } from './theme';
 
 const Providers = ({ children }) => {
   return (

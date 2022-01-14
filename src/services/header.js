@@ -1,8 +1,10 @@
-export function authHeader() {
-  const tokens = JSON.parse(localStorage.getItem('tokens'));
+import { store } from '../state';
 
-  if (tokens && tokens.accessToken) {
-    return { 'x-access-token': tokens.accessToken.token };
+export function authHeader() {
+  const { auth } = store.getState();
+
+  if (auth.tokens && auth.tokens.access) {
+    return { Authorization: `Bearer ${auth.tokens.access.token}` };
   } else {
     return {};
   }

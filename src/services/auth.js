@@ -4,12 +4,21 @@ import config from '../config';
 const API_URL = config.apiUrl + 'auth/';
 
 const register = (name, email, password, tz) => {
-  return axios.post(API_URL + 'register', {
-    name,
-    email,
-    password,
-    tz,
-  });
+  return axios
+    .post(API_URL + 'register', {
+      name,
+      email,
+      password,
+      tz,
+    })
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
+      }
+
+      return response.data;
+    });
 };
 
 const login = (email, password) => {
@@ -35,7 +44,7 @@ const refreshTokens = (refreshToken) => {
     })
     .then((response) => {
       if (response.data) {
-        localStorage.setItem('tokens', JSON.stringify(response.data.tokens));
+        localStorage.setItem('tokens', JSON.stringify(response.data));
       }
 
       return response.data;

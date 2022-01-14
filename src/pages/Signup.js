@@ -48,7 +48,7 @@ const Signup = () => {
       .unwrap()
       .then(() => {
         setIsLoading(false);
-        navigate('/login', { replace: true });
+        navigate('/dashboard', { replace: true });
       })
       .catch(() => {
         setIsLoading(false);
