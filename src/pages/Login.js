@@ -77,6 +77,9 @@ const Login = () => {
               <div className="form-group">
                 <label className="label" htmlFor="password">
                   <span className="label-text">Password</span>
+                  <Link to="/forgot-password" className="label-text-alt">
+                    Forgotten password?
+                  </Link>
                 </label>
                 <div style={{ position: 'relative' }}>
                   <Field
@@ -101,7 +104,7 @@ const Login = () => {
                 </button>
                 <div className="text-center mt-4">
                   Don't have an account?{' '}
-                  <Link to="/signup" className="link link-primary">
+                  <Link to="/signup" className="link">
                     Sign up
                   </Link>
                 </div>

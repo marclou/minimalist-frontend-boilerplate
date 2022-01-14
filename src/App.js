@@ -10,6 +10,7 @@ import Loader from './pages/Loader';
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Signup = lazy(() => import('./pages/Signup'));
 const Login = lazy(() => import('./pages/Login'));
+const PasswordForgot = lazy(() => import('./pages/PasswordForgot'));
 const PrivateRoute = lazy(() => import('./components/PrivateRoute'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 
@@ -37,10 +38,9 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-
           <Route path="signup" element={<Signup />} />
-
           <Route path="login" element={<Login />} />
+          <Route path="forgot-password" element={<PasswordForgot />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
