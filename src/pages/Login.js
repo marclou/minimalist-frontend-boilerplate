@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 import { login } from '../state/auth';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
@@ -43,8 +43,9 @@ const Login = () => {
         setIsLoading(false);
         navigate('/dashboard');
       })
-      .catch(() => {
+      .catch((error) => {
         setIsLoading(false);
+        toast.error(error);
       });
   };
 

@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 import authService from '../services/auth';
 
@@ -27,52 +26,47 @@ const stopRefreshTokenTimer = () => {
 export const register = createAsyncThunk('auth/register', async ({ name, email, password, tz }, thunkAPI) => {
   try {
     const response = await authService.register(name, email, password, tz);
-    toast(`Welcome, ${name} 👋`);
+
     startRefreshTokenTimer(thunkAPI, response.tokens);
+
     return { user: response.user, tokens: response.tokens };
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    toast.error(message);
-    return thunkAPI.rejectWithValue();
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const login = createAsyncThunk('auth/login', async ({ email, password }, thunkAPI) => {
   try {
     const response = await authService.login(email, password);
+
     startRefreshTokenTimer(thunkAPI, response.tokens);
+
     return { user: response.user, tokens: response.tokens };
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    toast.error(message);
-    return thunkAPI.rejectWithValue();
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const refreshTokens = createAsyncThunk('auth/refreshToken', async ({ refreshToken }, thunkAPI) => {
   try {
     const response = await authService.refreshTokens(refreshToken);
+
     startRefreshTokenTimer(thunkAPI, response);
+
     return { tokens: response };
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    console.log(message);
-    return thunkAPI.rejectWithValue();
+    console.log(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const logout = createAsyncThunk('auth/logout', async ({ refreshToken }, thunkAPI) => {
   try {
     await authService.logout(refreshToken);
+
     stopRefreshTokenTimer();
   } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-    toast.error(message);
-    return thunkAPI.rejectWithValue();
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 

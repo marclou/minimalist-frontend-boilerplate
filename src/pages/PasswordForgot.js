@@ -4,12 +4,12 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
+import authService from '../services/auth';
+
 function PasswordForgot() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSentLink, setHasSentLink] = useState(false);
   const submitRef = useRef();
-
-  console.log(submitRef.current && submitRef.current.style);
 
   const initialValues = {
     email: '',
@@ -19,27 +19,31 @@ function PasswordForgot() {
     email: Yup.string().email('This is not a valid email.').required('This field is required!'),
   });
 
-  const handleSubmit = (formValue) => {
+  const handleSubmit = async (formValue) => {
     const { email } = formValue;
 
     setIsLoading(true);
-    //
-    //
-    //
-    //
-    //
-    // API CALLL
 
-    setHasSentLink(true);
-    setIsLoading(false);
+    try {
+      await authService.forgotPassword(email);
 
-    if (submitRef.current) {
-      submitRef.current.style.border = 0;
-      submitRef.current.style.backgroundColor = 'hsla(var(--n) / var(--tw-bg-opacity, 1))';
+      setHasSentLink(true);
+
+      toast.success(`Link sent! Check your email (and spam) for password reset instructions`, {
+        autoClose: false,
+      });
+
+      if (submitRef.current) {
+        submitRef.current.style.border = 0;
+        submitRef.current.style.backgroundColor = 'hsla(var(--n) / var(--tw-bg-opacity, 1))';
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    toast(`✉️ Reset link sent!\n\nCheck your email (and spam) for password reset instructions`);
   };
+
   return (
     <div className="card shadow-lg bg-base-100 max-w-2xl mx-auto">
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>

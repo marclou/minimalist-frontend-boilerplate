@@ -5,6 +5,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 import { register } from '../state/auth';
 import { usePasswordToggle } from '../hooks/usePasswordToggle';
@@ -48,10 +49,12 @@ const Signup = () => {
       .unwrap()
       .then(() => {
         setIsLoading(false);
+        toast(`Welcome, ${name} 👋`);
         navigate('/dashboard', { replace: true });
       })
-      .catch(() => {
+      .catch((error) => {
         setIsLoading(false);
+        toast.error(error);
       });
   };
 

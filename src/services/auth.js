@@ -1,11 +1,8 @@
-import axios from 'axios';
-import config from '../config';
-
-const API_URL = config.apiUrl + 'auth/';
+import apiClient from './apiClient';
 
 const register = (name, email, password, tz) => {
-  return axios
-    .post(API_URL + 'register', {
+  return apiClient
+    .post('auth/register', {
       name,
       email,
       password,
@@ -22,8 +19,8 @@ const register = (name, email, password, tz) => {
 };
 
 const login = (email, password) => {
-  return axios
-    .post(API_URL + 'login', {
+  return apiClient
+    .post('auth/login', {
       email,
       password,
     })
@@ -38,8 +35,8 @@ const login = (email, password) => {
 };
 
 const refreshTokens = (refreshToken) => {
-  return axios
-    .post(API_URL + 'refresh-tokens', {
+  return apiClient
+    .post('auth/refresh-tokens', {
       refreshToken,
     })
     .then((response) => {
@@ -51,9 +48,19 @@ const refreshTokens = (refreshToken) => {
     });
 };
 
+const forgotPassword = (email) => {
+  return apiClient
+    .post('auth/forgot-password', {
+      email,
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
 const logout = (refreshToken) => {
-  return axios
-    .post(API_URL + 'logout', {
+  return apiClient
+    .post('auth/logout', {
       refreshToken,
     })
     .then((response) => {
@@ -66,6 +73,7 @@ const authService = {
   register,
   login,
   refreshTokens,
+  forgotPassword,
   logout,
 };
 

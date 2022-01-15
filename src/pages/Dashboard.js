@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { logout } from '../state/auth';
 import userService from '../services/users';
@@ -16,10 +17,7 @@ const Dashboard = () => {
         setUsers(response.data.results);
       },
       (error) => {
-        const msg =
-          (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
-
-        console.log(msg);
+        console.log(error.message);
       }
     );
   }, [isLoggedIn]);
@@ -29,8 +27,9 @@ const Dashboard = () => {
 
     dispatch(logout({ refreshToken: tokens.refresh.token }))
       .unwrap()
-      .catch(() => {
+      .catch((error) => {
         setIsLoading(false);
+        toast.error(error);
       });
   };
 
