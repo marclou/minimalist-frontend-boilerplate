@@ -18,6 +18,12 @@ const Home = () => {
               <button className="btn btn-primary">Sign up</button>
             </Link>
           </div>
+          <Link
+            to="reset-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MWUxMjk4YTUxOTA3NjMwN2EzMDlmNWIiLCJpYXQiOjE2NDIyMjU4MTUsImV4cCI6MTY0MjIyNjQxNSwidHlwZSI6InJlc2V0UGFzc3dvcmQifQ.MGjXndceO9wgH95BB1r_8-jLOpSV8hXETJFvT2QW5PU"
+            className="flex-grow"
+          >
+            <button className="btn btn-primary">Reset</button>
+          </Link>
         </div>
       </div>
     </div>

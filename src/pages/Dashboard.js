@@ -29,7 +29,7 @@ const Dashboard = () => {
       .unwrap()
       .catch((error) => {
         setIsLoading(false);
-        toast.error(error.message);
+        toast.error(error);
       });
   };
 

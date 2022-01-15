@@ -31,7 +31,7 @@ export const register = createAsyncThunk('auth/register', async ({ name, email, 
 
     return { user: response.user, tokens: response.tokens };
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -43,7 +43,7 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }, 
 
     return { user: response.user, tokens: response.tokens };
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -55,8 +55,8 @@ export const refreshTokens = createAsyncThunk('auth/refreshToken', async ({ refr
 
     return { tokens: response };
   } catch (error) {
-    console.log(error);
-    return thunkAPI.rejectWithValue(error);
+    console.log(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -66,7 +66,7 @@ export const logout = createAsyncThunk('auth/logout', async ({ refreshToken }, t
 
     stopRefreshTokenTimer();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 

@@ -49,13 +49,15 @@ const refreshTokens = (refreshToken) => {
 };
 
 const forgotPassword = (email) => {
-  return apiClient
-    .post('auth/forgot-password', {
-      email,
-    })
-    .then((response) => {
-      return response.data;
-    });
+  return apiClient.post('auth/forgot-password', {
+    email,
+  });
+};
+
+const resetPassword = (token, password) => {
+  return apiClient.post(`auth/reset-password?token=${token}`, {
+    password,
+  });
 };
 
 const logout = (refreshToken) => {
@@ -74,6 +76,7 @@ const authService = {
   login,
   refreshTokens,
   forgotPassword,
+  resetPassword,
   logout,
 };
 

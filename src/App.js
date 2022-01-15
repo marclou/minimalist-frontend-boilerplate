@@ -11,6 +11,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Signup = lazy(() => import('./pages/Signup'));
 const Login = lazy(() => import('./pages/Login'));
 const PasswordForgot = lazy(() => import('./pages/PasswordForgot'));
+const PasswordReset = lazy(() => import('./pages/PasswordReset'));
 const PrivateRoute = lazy(() => import('./components/PrivateRoute'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="forgot-password" element={<PasswordForgot />} />
+          <Route path="reset-password" element={<PasswordReset />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
