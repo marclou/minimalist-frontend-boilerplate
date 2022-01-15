@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -7,6 +7,9 @@ import { toast } from 'react-toastify';
 function PasswordForgot() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSentLink, setHasSentLink] = useState(false);
+  const submitRef = useRef();
+
+  console.log(submitRef.current && submitRef.current.style);
 
   const initialValues = {
     email: '',
@@ -29,7 +32,13 @@ function PasswordForgot() {
 
     setHasSentLink(true);
     setIsLoading(false);
-    toast(`✉️ Email sent!\n\nCheck your email (and spam) for password reset instructions`);
+
+    if (submitRef.current) {
+      submitRef.current.style.border = 0;
+      submitRef.current.style.backgroundColor = 'hsla(var(--n) / var(--tw-bg-opacity, 1))';
+    }
+
+    toast(`✉️ Reset link sent!\n\nCheck your email (and spam) for password reset instructions`);
   };
   return (
     <div className="card shadow-lg bg-base-100 max-w-2xl mx-auto">
@@ -64,6 +73,7 @@ function PasswordForgot() {
                   type="submit"
                   className={`btn btn-primary btn-block ${isLoading && 'loading'}`}
                   disabled={hasSentLink}
+                  ref={submitRef}
                 >
                   {hasSentLink ? 'Link sent!' : 'Send reset link'}
                 </button>

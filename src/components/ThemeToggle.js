@@ -6,8 +6,12 @@ import { ThemeContext } from '../contexts/theme';
 const ThemeToggle = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
+  const handleClick = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
-    <button className="btn btn-square btn-outline border-0" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+    <button className="btn btn-square btn-outline border-0 dark:hover:bg-base-100" onClick={handleClick}>
       <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} className="text-xl text-white" />
     </button>
   );
